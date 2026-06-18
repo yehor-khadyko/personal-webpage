@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yehor Khadyko</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Aalto Display';
+            src: url('aalto-display-personal-use.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ==========================================================================
+           🎛️ ПАНЕЛЬ НАСТРОЕК ТИПОГРАФИКИ И ГЕОМЕТРИИ
+           ========================================================================== */
+        :root {
+            --title-font-size: 18vw;          
+            --title-line-height: 0.8em;        
+            --title-letter-spacing: 0.05em;  
+            --title-thin-letter-spacing: 0.05em; 
+            --title-margin-bottom: 1rem;    
+
+            --roles-font-size: 1.5rem;        
+            --roles-letter-spacing: 0em;  
+            --roles-margin-bottom: 1.5rem;    
+
+            --bio-font-size: 1rem;            
+            --bio-line-height: 1.6;           
+            --bio-max-width: 580px;           
+            --bio-margin-bottom: 4rem;        
+
+            --links-font-size: 1.1rem;        
+            --links-gap: 2.5rem;              
+            --links-border-width: 2px;        
+            --links-padding-bottom: 0.2rem;   
+        }
+
+        /* === ЧИСТЫЕ ДВУХЦВЕТНЫЕ ПРОФИЛИ ТЕМ (ФОН И ТЕКСТ) === */
+        body[data-theme="theme-1"]  { --bg-color: #593eff; --text-color: #ffcdd8; }
+        body[data-theme="theme-2"]  { --bg-color: #ffcdd9; --text-color: #fe3940; }
+        body[data-theme="theme-3"]  { --bg-color: #fe9a00; --text-color: #ffcdd9; }
+        body[data-theme="theme-4"]  { --bg-color: #01752e; --text-color: #ffcdd9; }
+        body[data-theme="theme-5"]  { --bg-color: #fe9a00; --text-color: #ff3a3e; }
+        body[data-theme="theme-6"]  { --bg-color: #ff3a3e; --text-color: #fe9a00; }
+        body[data-theme="theme-7"]  { --bg-color: #002f5e; --text-color: #ffe2b9; }
+        body[data-theme="theme-8"]  { --bg-color: #260057; --text-color: #dbff88; }
+        body[data-theme="theme-9"]  { --bg-color: #fe3940; --text-color: #ffcdd7; }
+        body[data-theme="theme-10"] { --bg-color: #ff5f5f; --text-color: #ffd5ad; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; 
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            font-variant-emoji: text !important;
+        }
+
+        /* ГАРАНТИРОВАННОЕ СКРЫТИЕ СИСТЕМНОГО КУРСОРA НАД ВСЕМ САЙТОМ */
+        *, *::before, *::after {
+            cursor: none !important;
+        }
+
+        body, main, section, div, p, h1, h2, h3, a, button, span, svg, .clipped-lens, .clipped-lens * {
+            transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                        color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                        border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+        }
+
+        .page-wrapper {
+            position: relative; 
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* === ЯЗЫКОВЫЕ БЛОКИ === */
+        .lang-block {
+            transition: opacity 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: opacity;
+        }
+
+        body[data-lang="en"] .lang-ua,
+        body[data-lang="ua"] .lang-en {
+            display: none !important;
+            opacity: 0 !important;
+        }
+
+        body[data-lang="en"] .lang-en,
+        body[data-lang="ua"] .lang-ua {
+            display: block !important;
+        }
+
+        body[data-lang="en"] nav.links-container .lang-en,
+        body[data-lang="ua"] nav.links-container .lang-ua {
+            display: flex !important;
+            gap: var(--links-gap);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .fade-out-all {
+            opacity: 0 !important;
+            transform: translateY(8px);
+            transition: opacity 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        }
+
+        .title-name {
+            font-family: 'Aalto Display', sans-serif;
+            font-size: var(--title-font-size);
+            line-height: var(--title-line-height);
+            margin-bottom: var(--title-margin-bottom);
+            white-space: nowrap;
+        }
+
+        .title-name .char {
+            display: inline-block;
+            font-weight: 900;
+            text-transform: uppercase; 
+            letter-spacing: var(--title-letter-spacing);
+            opacity: 0;
+            will-change: opacity;
+        }
+
+        .title-name .thin-char {
+            font-weight: 300 !important;
+            font-feature-settings: "salt" on !important;
+            text-transform: lowercase !important;
+            letter-spacing: var(--title-thin-letter-spacing) !important;
+        }
+
+        .roles {
+            font-size: var(--roles-font-size);
+            letter-spacing: var(--roles-letter-spacing);
+            margin-bottom: var(--roles-margin-bottom);
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .short-bio {
+            font-size: var(--bio-font-size);
+            line-height: var(--bio-line-height);
+            max-width: var(--bio-max-width);
+            margin-bottom: var(--bio-margin-bottom);
+            color: var(--text-color);
+            opacity: 0.85; 
+        }
+
+        .links-container a {
+            font-size: var(--links-font-size);
+            border-bottom: var(--links-border-width) solid var(--text-color);
+            padding-bottom: var(--links-padding-bottom);
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 700;
+            transition: opacity 0.2s ease;
+        }
+
+        .links-container a:hover {
+            opacity: 0.6;
+        }
+
+        .arrow-svg {
+            width: 0.85em; 
+            height: 0.85em; 
+            transform: translate(0.08em, -0.05em); 
+            display: inline-block; 
+            vertical-align: middle;
+        }
+
+        .fade-in-content {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            will-change: opacity, transform;
+        }
+
+        .fade-in-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .controls-group {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+            z-index: 99999;
+        }
+
+        .theme-toggle, .lang-toggle {
+            background: none;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: inherit;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: background-color 0.25s cubic-bezier(0.25, 1, 0.5, 1), 
+                        color 0.25s cubic-bezier(0.25, 1, 0.5, 1), 
+                        opacity 0.2s ease;
+        }
+
+        .theme-toggle {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            height: 2.2rem;
+        }
+
+        .lang-toggle {
+            width: 2.2rem;
+            height: 2.2rem;
+        }
+
+        .theme-toggle:hover, .lang-toggle:hover {
+            background-color: var(--text-color) !important;
+            color: var(--bg-color) !important;
+        }
+
+        /* === МАСКА-ЛИНЗА INSET === */
+        .clipped-lens {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            user-select: none;
+            z-index: 99998;
+            background-color: var(--text-color);
+            overflow: hidden;
+            
+            --clip-top: 0px;
+            --clip-right: 0px;
+            --clip-bottom: 0px;
+            --clip-left: 0px;
+            --clip-radius: 50%;
+            
+            clip-path: inset(
+                var(--clip-top) 
+                var(--clip-right) 
+                var(--clip-bottom) 
+                var(--clip-left) 
+                round 
+                var(--clip-radius)
+            );
+            
+            opacity: 0;
+            transition: opacity 0.3s ease, background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: clip-path, opacity;
+        }
+
+        .clipped-lens .page-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body.cursor-active .clipped-lens {
+            opacity: 1;
+        }
+
+        .clipped-lens,
+        .clipped-lens * {
+            color: var(--bg-color) !important;
+            border-color: var(--bg-color) !important;
+            opacity: 1 !important; 
+        }
+
+        .clipped-lens .hovered {
+            background-color: var(--bg-color) !important;
+            border-color: transparent !important;
+        }
+        
+        .clipped-lens .hovered,
+        .clipped-lens .hovered * {
+            color: var(--text-color) !important;
+            border-color: var(--text-color) !important;
+            opacity: 1 !important;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 99999;
+            opacity: 0;
+            transition: opacity 0.2s ease; 
+            will-change: transform, width, height, border-radius;
+            background-color: transparent;
+        }
+
+        /* ОТКЛЮЧЕНИЕ КАСТОМНОГО КУРСОРA НА СЕНСОРНЫХ УСТРОЙСТВАХ (ТЕЛЕФОНЫ) */
+        @media (pointer: coarse) {
+            *, *::before, *::after {
+                cursor: auto !important;
+            }
+            .custom-cursor, .clipped-lens { 
+                display: none !important; 
+            }
+        }
+    </style>
+</head>
+<body data-theme="theme-1" data-lang="en">
+
+    <div class="custom-cursor" id="customCursor"></div>
+
+    <div class="page-wrapper" id="mainContainer">
+        <div class="container">
+            
+            <div class="controls-group">
+                <button class="lang-toggle fade-in-content" onclick="toggleLanguage()">
+                    <svg class="planet-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" style="width: 1.15rem; height: 1.15rem; display: block;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 2a14.5 15.3 0 0 1 4 10 14.5 15.3 0 0 1-4 10 14.5 15.3 0 0 1-4-10 14.5 15.3 0 0 1 4-10z"></path>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                    </svg>
+                </button>
+                <button class="theme-toggle fade-in-content" id="themeBtn" onclick="nextTheme()">
+                    <span class="lang-block lang-en">Change Style</span>
+                    <span class="lang-block lang-ua">Змінити стиль</span>
+                </button>
+            </div>
+
+            <h1 class="title-name">
+                <span class="lang-block lang-en">
+                    <span class="char">Y</span><span class="char">E</span><span class="char">H</span><span class="char thin-char">O</span><span class="char">R</span><br>
+                    <span class="char">K</span><span class="char">H</span><span class="char thin-char">A</span><span class="char">D</span><span class="char">Y</span><span class="char">K</span><span class="char">O</span>
+                </span>
+                <span class="lang-block lang-ua">
+                    <span class="char">Ε</span><span class="char">Γ</span><span class="char thin-char">O</span><span class="char">Ρ</span><br>
+                    <span class="char">Χ</span><span class="char thin-char">A</span><span class="char">Δ</span><span class="char">Υ</span><span class="char">Κ</span><span class="char">Ο</span>
+                </span>
+            </h1>
+
+            <div class="roles fade-in-content">
+                <p class="lang-block lang-en">/ game designer / atmosphere builder / researcher</p>
+                <p class="lang-block lang-ua">/ геймдизайнер / конструктор атмосфери / дослідник</p>
+            </div>
+
+            <div class="short-bio fade-in-content">
+                <p class="lang-block lang-en">Welcome to my personal void. A place where pure aesthetics intersect with systemic thinking. Designing experiences, managing attention, creating worlds.</p>
+                <p class="lang-block lang-ua">Ласкаво просимо в мій особистий void. Місце, де чиста естетика перетинається з системним мисленням. Проектую досвід, керую увагою, створюю світи.</p>
+            </div>
+
+            <nav class="links-container fade-in-content" id="linksContainer">
+                <div class="lang-block lang-en">
+                    <a href="#" target="_blank" class="nav-link">Portfolio <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="#" target="_blank" class="nav-link">LinkedIn <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="#" target="_blank" class="nav-link">Itch.io <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="#" target="_blank" class="nav-link">Contact <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                </div>
+                <div class="lang-block lang-ua">
+                    <a href="#" target="_blank" class="nav-link">Портфоліо <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="#" target="_blank" class="nav-link">LinkedIn <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="#" target="_blank" class="nav-link">Itch.io <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="#" target="_blank" class="nav-link">Контакт <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                </div>
+            </nav>
+            
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <script>
+        const lenis = new Lenis({
+            duration: 1.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+            orientation: 'vertical',
+            smoothWheel: true,
+        });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        const translations = {
+            en: {
+                nameChars: [
+                    { char: 'Y' }, { char: 'E' }, { char: 'H' }, { char: 'O' }, { char: 'R' },
+                    { char: 'K' }, { char: 'H' }, { char: 'A' }, { char: 'D' }, { char: 'Y' }, { char: 'K' }, { char: 'O' }
+                ]
+            },
+            ua: {
+                nameChars: [
+                    { char: 'Ε' }, { char: 'Γ' }, { char: 'O' }, { char: 'Ρ' },
+                    { char: 'Χ' }, { char: 'A' }, { char: 'Δ' }, { char: 'Υ' }, { char: 'Κ' }, { char: 'Ο' }
+                ]
+            }
+        };
+
+        const mainContainer = document.getElementById('mainContainer');
+        const pageWrapper = document.querySelector('.page-wrapper');
+        
+        const lensWrapper = document.createElement('div');
+        lensWrapper.className = 'clipped-lens';
+        const clonedWrapper = pageWrapper.cloneNode(true); 
+        
+        clonedWrapper.removeAttribute('id');
+        clonedWrapper.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+        lensWrapper.appendChild(clonedWrapper);
+        pageWrapper.appendChild(lensWrapper); 
+
+        const body = document.body;
+        const themes = [
+            "theme-1", "theme-2", "theme-3", "theme-4", "theme-5", 
+            "theme-6", "theme-7", "theme-8", "theme-9", "theme-10"
+        ];
+        let currentThemeIndex = 0;
+        let resizeTimeout;
+
+        function nextTheme() {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            const newTheme = themes[currentThemeIndex];
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => lenis.resize(), 100);
+        }
+
+        let currentLang = 'en';
+        let decryptTimeouts = []; 
+        let isLangTransitioning = false;
+        const glyphs = "YEHORKHADYKOABCDFGIJLMNPQSTUVWXZ"; 
+
+        function startTerminalDecryptForLang(lang) {
+            let completedCount = 0;
+            const nameBlocks = document.querySelectorAll(`.title-name .lang-${lang}`);
+            if (nameBlocks.length === 0) return;
+
+            const realSpans = Array.from(nameBlocks[0].querySelectorAll('.char'));
+            const clonedSpans = nameBlocks[1] ? Array.from(nameBlocks[1].querySelectorAll('.char')) : [];
+            const data = translations[lang].nameChars;
+
+            realSpans.forEach((rSpan, index) => {
+                const cSpan = clonedSpans[index];
+                if (!rSpan) return;
+
+                const tId = setTimeout(() => {
+                    rSpan.style.opacity = '0.3';
+                    if (cSpan) cSpan.style.opacity = '0.3';
+
+                    let cycles = 10;
+                    let currentCycle = 0;
+                    const target = data[index].char;
+
+                    function tick() {
+                        if (currentCycle < cycles) {
+                            const randomChar = glyphs[Math.floor(Math.random() * glyphs.length)];
+                            rSpan.textContent = randomChar;
+                            if (cSpan) cSpan.textContent = randomChar;
+                            
+                            const progress = currentCycle / cycles;
+                            rSpan.style.opacity = 0.3 + (progress * 0.7);
+                            if (cSpan) cSpan.style.opacity = 0.3 + (progress * 0.7);
+
+                            currentCycle++;
+                            const subId = setTimeout(tick, 35);
+                            decryptTimeouts.push(subId);
+                        } else {
+                            rSpan.textContent = target;
+                            rSpan.style.opacity = '1';
+                            if (cSpan) {
+                                cSpan.textContent = target;
+                                cSpan.style.opacity = '1';
+                            }
+
+                            completedCount++;
+                            if (completedCount === data.length) {
+                                revealRestOfPage();
+                            }
+                        }
+                    }
+                    tick();
+                }, index * 80);
+
+                decryptTimeouts.push(tId);
+            });
+        }
+
+        function revealRestOfPage() {
+            const elements = document.querySelectorAll('.fade-in-content');
+            elements.forEach((el) => {
+                el.classList.add('visible');
+            });
+        }
+
+        function toggleLanguage() {
+            if (isLangTransitioning) return;
+            isLangTransitioning = true;
+
+            const targets = document.querySelectorAll('#themeBtn, .title-name, .roles, .short-bio, .links-container');
+            
+            targets.forEach(el => el.classList.add('fade-out-all'));
+
+            setTimeout(() => {
+                currentLang = currentLang === 'en' ? 'ua' : 'en';
+                body.setAttribute('data-lang', currentLang);
+
+                decryptTimeouts.forEach(clearTimeout);
+                decryptTimeouts = [];
+
+                const activeNameBlocks = document.querySelectorAll(`.title-name .lang-${currentLang}`);
+                activeNameBlocks.forEach(block => {
+                    const spans = block.querySelectorAll('.char');
+                    spans.forEach(span => span.style.opacity = '0');
+                });
+
+                updateInteractiveTriggers();
+
+                setTimeout(() => {
+                    targets.forEach(el => el.classList.remove('fade-out-all'));
+                    startTerminalDecryptForLang(currentLang);
+                    isLangTransitioning = false;
+                }, 50);
+
+            }, 200);
+        }
+
+        window.onload = () => {
+            updateInteractiveTriggers();
+            setTimeout(() => {
+                revealRestOfPage();
+                startTerminalDecryptForLang('en');
+            }, 400);
+        };
+
+        // ==========================================================================
+        // МАГНИТНЫЙ КУРСОР И ГЕОМЕТРИЯ INSET
+        // ==========================================================================
+        const cursorNode = document.getElementById('customCursor');
+        const PORTFOLIO_REST_RADIUS = 10;
+        const LERP_SPEED = 0.15;
+
+        let mouseX = 0, mouseY = 0;   
+        
+        let cursorX = 0, cursorY = 0;
+        let cursorW = 0, cursorH = 0;
+        let cursorR = 0;
+
+        let targetX = 0, targetY = 0;
+        let targetW = 0, targetH = 0;
+        let targetR = 0;
+
+        let isClicking = false;
+        let isOutside = true;    
+        let hoveredElement = null;
+        let hoveredRect = null; 
+
+        window.addEventListener('mousemove', (e) => {
+            if (e.clientX === 0 && e.clientY === 0) return;
+            
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            if (isOutside) {
+                cursorX = mouseX;
+                cursorY = mouseY;
+                cursorW = 0;
+                cursorH = 0;
+                cursorR = 0;
+                
+                isOutside = false;
+                body.classList.add('cursor-active');
+            }
+        }, { passive: true });
+
+        document.addEventListener('mouseleave', () => {
+            isOutside = true;
+            hoveredElement = null;
+            hoveredRect = null;
+        });
+
+        window.addEventListener('mousedown', (e) => {
+            if (e.button === 0 && !isOutside) { 
+                isClicking = true;
+            }
+        });
+        window.addEventListener('mouseup', () => {
+            isClicking = false;
+        });
+
+        function syncCursorCoordinates() {
+            if (!hoveredElement) {
+                targetW = PORTFOLIO_REST_RADIUS * 2;
+                targetH = PORTFOLIO_REST_RADIUS * 2;
+                targetX = mouseX - targetW / 2;
+                targetY = mouseY - targetH / 2;
+                targetR = PORTFOLIO_REST_RADIUS; 
+            } else if (hoveredRect) {
+                const padding = 6; 
+                targetW = hoveredRect.width + padding * 2;
+                targetH = hoveredRect.height + padding * 2;
+                targetX = hoveredRect.left - padding;
+                targetY = hoveredRect.top - padding;
+                targetR = 0; // Прямые и острые углы при наведении
+            }
+
+            let activeTargetW = isClicking ? targetW * 0.82 : targetW;
+            let activeTargetH = isClicking ? targetH * 0.82 : targetH;
+            let activeTargetX = isClicking ? targetX + (targetW - activeTargetW) / 2 : targetX;
+            let activeTargetY = isClicking ? targetY + (targetH - activeTargetH) / 2 : targetY;
+
+            if (isOutside) {
+                activeTargetW = 0;
+                activeTargetH = 0;
+            }
+
+            cursorX += (activeTargetX - cursorX) * LERP_SPEED;
+            cursorY += (activeTargetY - cursorY) * LERP_SPEED;
+            cursorW += (activeTargetW - cursorW) * LERP_SPEED;
+            cursorH += (activeTargetH - cursorH) * LERP_SPEED;
+            cursorR += (targetR - cursorR) * LERP_SPEED;
+
+            if (isOutside && cursorW < 0.1) {
+                body.classList.remove('cursor-active');
+            }
+            
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
+
+            const clipTop = cursorY;
+            const clipLeft = cursorX;
+            const clipBottom = viewportHeight - (clipTop + cursorH);
+            const clipRight = viewportWidth - (clipLeft + cursorW);
+
+            lensWrapper.style.setProperty('--clip-top', `${clipTop}px`);
+            lensWrapper.style.setProperty('--clip-right', `${clipRight}px`);
+            lensWrapper.style.setProperty('--clip-bottom', `${clipBottom}px`);
+            lensWrapper.style.setProperty('--clip-left', `${clipLeft}px`);
+            lensWrapper.style.setProperty('--clip-radius', `${cursorR}px`);
+            
+            cursorNode.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+            cursorNode.style.width = `${cursorW}px`;
+            cursorNode.style.height = `${cursorH}px`;
+            cursorNode.style.borderRadius = `${cursorR}px`;
+            cursorNode.style.opacity = isOutside ? '0' : '1';
+            
+            requestAnimationFrame(syncCursorCoordinates);
+        }
+        requestAnimationFrame(syncCursorCoordinates);
+
+        function updateInteractiveTriggers() {
+            const selector = 'a, button, .theme-toggle, .lang-toggle';
+            
+            const realElements = Array.from(mainContainer.querySelectorAll(selector));
+            const clonedElements = Array.from(lensWrapper.querySelectorAll(selector));
+
+            realElements.forEach((element, index) => {
+                if (!element.dataset.cursorBound) {
+                    element.dataset.cursorBound = "true";
+                    
+                    const clone = clonedElements[index];
+
+                    element.addEventListener('mouseenter', () => {
+                        hoveredElement = element; 
+                        hoveredRect = element.getBoundingClientRect(); 
+                        if (clone) clone.classList.add('hovered');
+                    });
+                    
+                    element.addEventListener('mouseleave', () => {
+                        hoveredElement = null;
+                        hoveredRect = null;
+                        if (clone) clone.classList.remove('hovered');
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
