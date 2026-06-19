@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yehor Khadyko</title>
+    <title>Yehor Khadyko | Personal Webpage</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,9 +20,6 @@
             font-display: swap;
         }
 
-        /* ==========================================================================
-           🎛️ ПАНЕЛЬ НАСТРОЕК ТИПОГРАФИКИ И ГЕОМЕТРИИ
-           ========================================================================== */
         :root {
             --title-font-size: 18vw;          
             --title-line-height: 0.8em;        
@@ -43,17 +42,16 @@
             --links-padding-bottom: 0.2rem;   
         }
 
-        /* === ЧИСТЫЕ ДВУХЦВЕТНЫЕ ПРОФИЛИ ТЕМ (ФОН И ТЕКСТ) === */
         body[data-theme="theme-1"]  { --bg-color: #593eff; --text-color: #ffcdd8; }
         body[data-theme="theme-2"]  { --bg-color: #ffcdd9; --text-color: #fe3940; }
         body[data-theme="theme-3"]  { --bg-color: #fe9a00; --text-color: #ffcdd9; }
-        body[data-theme="theme-4"]  { --bg-color: #01752e; --text-color: #ffcdd9; }
-        body[data-theme="theme-5"]  { --bg-color: #fe9a00; --text-color: #ff3a3e; }
-        body[data-theme="theme-6"]  { --bg-color: #ff3a3e; --text-color: #fe9a00; }
-        body[data-theme="theme-7"]  { --bg-color: #002f5e; --text-color: #ffe2b9; }
-        body[data-theme="theme-8"]  { --bg-color: #260057; --text-color: #dbff88; }
-        body[data-theme="theme-9"]  { --bg-color: #fe3940; --text-color: #ffcdd7; }
-        body[data-theme="theme-10"] { --bg-color: #ff5f5f; --text-color: #ffd5ad; }
+        body[data-theme="theme-4"]  { --bg-color: #ffcdd9; --text-color: #01752e; }
+        body[data-theme="theme-5"]  { --bg-color: #0077ff; --text-color: #ffcdd8; }
+        body[data-theme="theme-6"]  { --bg-color: #ffcdd8; --text-color: #593eff; }
+        body[data-theme="theme-7"]  { --bg-color: #fe3940; --text-color: #ffcdd9; }
+        body[data-theme="theme-8"]  { --bg-color: #ffcdd9; --text-color: #fe9a00; }
+        body[data-theme="theme-9"]  { --bg-color: #01752e; --text-color: #ffcdd9; }
+        body[data-theme="theme-10"] { --bg-color: #ffcdd8; --text-color: #0077ff; }
 
         html, body {
             width: 100%;
@@ -75,7 +73,6 @@
             font-variant-emoji: text !important;
         }
 
-        /* ГАРАНТИРОВАННОЕ СКРЫТИЕ СИСТЕМНОГО КУРСОРA НАД ВСЕМ САЙТОМ */
         *, *::before, *::after {
             cursor: none !important;
         }
@@ -112,7 +109,6 @@
             text-align: center;
         }
 
-        /* === ЯЗЫКОВЫЕ БЛОКИ === */
         .lang-block {
             transition: opacity 0.25s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: opacity;
@@ -261,7 +257,6 @@
             color: var(--bg-color) !important;
         }
 
-        /* === МАСКА-ЛИНЗА INSET === */
         .clipped-lens {
             position: absolute;
             top: 0;
@@ -337,7 +332,6 @@
             background-color: transparent;
         }
 
-        /* ОТКЛЮЧЕНИЕ КАСТОМНОГО КУРСОРA НА СЕНСОРНЫХ УСТРОЙСТВАХ (ТЕЛЕФОНЫ) */
         @media (pointer: coarse) {
             *, *::before, *::after {
                 cursor: auto !important;
@@ -392,16 +386,16 @@
 
             <nav class="links-container fade-in-content" id="linksContainer">
                 <div class="lang-block lang-en">
-                    <a href="#" target="_blank" class="nav-link">Portfolio <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="#" target="_blank" class="nav-link">LinkedIn <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="#" target="_blank" class="nav-link">Itch.io <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="#" target="_blank" class="nav-link">Contact <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="https://yehor-khadyko.github.io/portfolio/" target="_blank" class="nav-link">Portfolio <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="https://www.linkedin.com/in/yehor-khadyko/" target="_blank" class="nav-link">LinkedIn <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="https://yehor-khadyko.itch.io" target="_blank" class="nav-link">Itch.io <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="mailto:yehor.khadyko@gmail.com" target="_blank" class="nav-link">Contact <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
                 </div>
                 <div class="lang-block lang-ua">
-                    <a href="#" target="_blank" class="nav-link">Портфоліо <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="#" target="_blank" class="nav-link">LinkedIn <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="#" target="_blank" class="nav-link">Itch.io <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="#" target="_blank" class="nav-link">Контакт <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="https://yehor-khadyko.github.io/portfolio/" target="_blank" class="nav-link">Портфоліо <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="https://www.linkedin.com/in/yehor-khadyko/" target="_blank" class="nav-link">LinkedIn <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="https://yehor-khadyko.itch.io" target="_blank" class="nav-link">Itch.io <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+                    <a href="mailto:yehor.khadyko@gmail.com" target="_blank" class="nav-link">Контакт <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
                 </div>
             </nav>
             
@@ -572,9 +566,6 @@
             }, 400);
         };
 
-        // ==========================================================================
-        // МАГНИТНЫЙ КУРСОР И ГЕОМЕТРИЯ INSET
-        // ==========================================================================
         const cursorNode = document.getElementById('customCursor');
         const PORTFOLIO_REST_RADIUS = 10;
         const LERP_SPEED = 0.15;
@@ -640,7 +631,7 @@
                 targetH = hoveredRect.height + padding * 2;
                 targetX = hoveredRect.left - padding;
                 targetY = hoveredRect.top - padding;
-                targetR = 0; // Прямые и острые углы при наведении
+                targetR = 0;
             }
 
             let activeTargetW = isClicking ? targetW * 0.82 : targetW;
