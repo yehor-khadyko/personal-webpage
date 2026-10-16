@@ -102,7 +102,7 @@ button { font: inherit; color: inherit; }
 /* top bar */
 .bar {
   position: fixed; inset: 0 0 auto 0; z-index: 10;
-  display: flex; align-items: flex-start; justify-content: space-between; gap: 0.6rem;
+  display: flex; align-items: flex-start; justify-content: flex-end; gap: 0.6rem;
   padding: 0.9rem var(--gutter);
   pointer-events: none;
 }
@@ -135,9 +135,9 @@ main {
   text-align: center;
 }
 .name {
-  font-family: var(--f-display); font-weight: 700; text-transform: uppercase;
-  font-size: min(30vw, 33vh);
-  line-height: 0.8; letter-spacing: 0.01em;
+  font-family: var(--f-name); font-weight: 400; text-transform: uppercase;
+  font-size: min(21vw, 30vh);
+  line-height: 0.82; letter-spacing: 0.05em;
   white-space: nowrap;
 }
 .name .row { display: block; padding-top: 0.06em; }
@@ -148,7 +148,11 @@ main {
   background: var(--coin); border-radius: 0.02em;
 }
 .name .ch { display: inline-block; }
-.name.is-ua { font-family: var(--f-name); font-size: min(24vw, 28vh); line-height: 0.9; }
+/* Aalto's alternate O and A: Yehor, KhAdyko */
+.name .alt { font-feature-settings: "salt" 1; }
+/* the Greek-looking Ukrainian letters sit tighter in Aalto, so they get more room */
+.name.is-ua { letter-spacing: 0.14em; font-size: min(18vw, 27vh); }
+.name.is-ua .row { padding-left: 0.14em; }
 .roles {
   margin-top: clamp(1rem, 3vh, 2rem);
   font-family: var(--f-mono); font-size: clamp(0.85rem, 1.4vw, 1.1rem); font-weight: 400;
@@ -197,31 +201,28 @@ main {
 .cursor.is-link { width: 46px; height: 46px; margin: -23px 0 0 -23px; }
 
 @media (max-width: 640px) {
-  .brand { font-size: 1.4rem; }
-  .pill { padding: 0.4rem 0.8rem; border-radius: 18px; }
   .ctl { padding: 0 0.7rem; font-size: 0.85rem; }
-  .name { font-size: min(34vw, 28vh); }
-  .name.is-ua { font-size: min(27vw, 24vh); }
+  .name { font-size: min(22vw, 26vh); }
+  .name.is-ua { font-size: min(19vw, 23vh); }
   .links .btn { min-height: 2.75rem; padding: 0.6rem 1.1rem; font-size: 0.95rem; }
   .decos .deco:nth-child(n+5) { display: none; }
 }
 @media (max-width: 400px) {
-  .bar { gap: 0.4rem; padding-inline: 0.6rem; }
-  .brand { font-size: 1.2rem; }
+  .bar { padding-inline: 0.6rem; }
   .ctl { padding: 0 0.5rem; height: 2.1rem; min-width: 2.1rem; }
   .controls { padding: 0.25rem; gap: 0.15rem; }
 }
 @media (max-height: 640px) {
   main { padding-top: 5rem; padding-bottom: 1.5rem; }
-  .name { font-size: min(32vw, 25vh); }
-  .name.is-ua { font-size: min(26vw, 22vh); }
+  .name { font-size: min(22vw, 24vh); }
+  .name.is-ua { font-size: min(19vw, 21vh); }
   .bio { font-size: 1.15rem; }
 }
 /* very short screens (phones on their side): let the card scroll instead of overlapping */
 @media (max-height: 520px) {
   body { height: auto; min-height: 100svh; overflow-y: auto; }
   main { height: auto; min-height: 100svh; justify-content: flex-start; padding-top: 5rem; }
-  .name, .name.is-ua { font-size: min(18vw, 26vh); }
+  .name, .name.is-ua { font-size: min(16vw, 26vh); }
   .decos .deco:nth-child(n+4) { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -243,7 +244,6 @@ main {
 </div>
 
 <header class="bar">
-  <a class="pill brand" href="#" aria-label="Yehor Khadyko">Yehor Khadyko</a>
   <div class="pill controls">
     <button class="ctl is-round" type="button" data-lang-btn aria-label="Switch language to Ukrainian">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 15.3 0 0 1 4 10 14.5 15.3 0 0 1-4 10 14.5 15.3 0 0 1-4-10 14.5 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
@@ -281,20 +281,24 @@ main {
     en: [["Y", "E", "H", "O", "R"], ["K", "H", "A", "D", "Y", "K", "O"]],
     ua: [["Ε", "Γ", "O", "Ρ"], ["Χ", "A", "Δ", "Υ", "Κ", "Ο"]],
   };
+  // [row, index] of the letters drawn with Aalto's alternate glyph: the O in the first name, the A in the surname
+  const ALT = { en: [[0, 3], [1, 2]], ua: [[0, 2], [1, 1]] };
   const GLYPHS = "YEHORKHADYKOABCDFGIJLMNPQSTUVWXZ";
   const nameEl = $("[data-name]");
   let timers = [];
   const decrypt = (lang) => {
     timers.forEach(clearTimeout); timers = [];
     nameEl.classList.toggle("is-ua", lang === "ua");
+    nameEl.setAttribute("aria-label", "Yehor Khadyko");
     nameEl.textContent = "";
     let i = 0;
-    NAMES[lang].forEach((row) => {
+    NAMES[lang].forEach((row, ri) => {
       const r = document.createElement("span");
       r.className = "row"; r.setAttribute("aria-hidden", "true");
-      row.forEach((target) => {
+      row.forEach((target, ci) => {
         const s = document.createElement("span");
-        s.className = "ch"; s.textContent = target;
+        s.className = "ch" + (ALT[lang].some(([r, c]) => r === ri && c === ci) ? " alt" : "");
+        s.textContent = target;
         r.append(s);
         if (!motionOK) return;
         s.style.opacity = "0";
