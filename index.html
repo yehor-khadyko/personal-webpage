@@ -141,12 +141,7 @@ main {
   white-space: nowrap;
 }
 .name .row { display: block; padding-top: 0.06em; }
-.name .row + .row { position: relative; width: max-content; margin: 0 auto; }
-.name .row + .row::after {
-  content: ""; position: absolute; left: 100%; bottom: 0.08em;
-  width: 0.14em; height: 0.14em; margin-left: 0.1em;
-  background: var(--coin); border-radius: 0.02em;
-}
+.name .row + .row { width: max-content; margin: 0 auto; }
 .name .ch { display: inline-block; }
 /* Aalto's alternate O and A: Yehor, KhAdyko */
 .name .alt { font-feature-settings: "salt" 1; }
