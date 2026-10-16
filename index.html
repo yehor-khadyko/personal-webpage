@@ -1,709 +1,431 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yehor Khadyko | Personal Webpage</title>
-    
-    <link rel="icon" type="image/png" href="favicon.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;900&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yehor Khadyko | Personal Webpage</title>
+<meta name="description" content="Yehor Khadyko: game designer, atmosphere builder, researcher. Portfolio, LinkedIn, itch.io and contact.">
+<meta name="author" content="Yehor Khadyko">
+<meta name="theme-color" content="#593eff">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="preload" href="fonts/humane-bold.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Humane"; src: url("fonts/humane-bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Aalto"; src: url("fonts/aalto-display.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Instrument Sans"; src: url("fonts/is-400.woff") format("woff"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Instrument Sans"; src: url("fonts/is-700.woff") format("woff"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Instrument Serif"; src: url("fonts/iserif-i.woff") format("woff"); font-style: italic; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("fonts/geist-mono.woff") format("woff"); font-display: swap; }
 
-    <style>
-        @font-face {
-            font-family: 'Aalto Display';
-            src: url('aalto-display-personal-use.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
+:root {
+  --bg: #593eff;
+  --fg: #ffcdd8;
+  --coin: #ffd23f;
+  --line: color-mix(in srgb, var(--fg) 28%, transparent);
+  --dot: color-mix(in srgb, var(--fg) 20%, transparent);
 
-        :root {
-            --title-font-size: 18vw;          
-            --title-line-height: 0.8em;        
-            --title-letter-spacing: 0.05em;  
-            --title-thin-letter-spacing: 0.05em; 
-            --title-margin-bottom: 1rem;    
+  --f-display: "Humane", "Impact", "Arial Narrow", sans-serif;
+  --f-name: "Aalto", "Instrument Sans", sans-serif;
+  --f-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-serif: "Instrument Serif", Georgia, serif;
+  --f-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --gutter: clamp(1rem, 3.2vw, 2.75rem);
+}
 
-            --roles-font-size: 1.5rem;        
-            --roles-letter-spacing: 0em;  
-            --roles-margin-bottom: 1.5rem;    
+/* The ten palettes of the original card. The Change Style button steps through them. */
+[data-theme="1"]  { --bg: #593eff; --fg: #ffcdd8; }
+[data-theme="2"]  { --bg: #ffcdd9; --fg: #fe3940; }
+[data-theme="3"]  { --bg: #fe9a00; --fg: #ffcdd9; }
+[data-theme="4"]  { --bg: #ffcdd9; --fg: #01752e; }
+[data-theme="5"]  { --bg: #3b90ff; --fg: #ffcdd8; }
+[data-theme="6"]  { --bg: #ffcdd8; --fg: #593eff; }
+[data-theme="7"]  { --bg: #fe3940; --fg: #ffcdd9; }
+[data-theme="8"]  { --bg: #ffcdd9; --fg: #fe9a00; }
+[data-theme="9"]  { --bg: #01752e; --fg: #ffcdd9; }
+[data-theme="10"] { --bg: #ffcdd8; --fg: #3b90ff; }
 
-            --bio-font-size: 1rem;            
-            --bio-line-height: 1.6;           
-            --bio-max-width: 580px;           
-            --bio-margin-bottom: 4rem;        
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  height: 100vh; height: 100svh;
+  overflow: hidden;
+  background: var(--bg); color: var(--fg);
+  font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
+}
+h1, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+::selection { background: var(--fg); color: var(--bg); }
+:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; border-radius: 6px; }
+.vh { position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.icon { width: 1em; height: 1em; flex: none; }
 
-            --links-font-size: 1.1rem;        
-            --links-gap: 2.5rem;              
-            --links-border-width: 2px;        
-            --links-padding-bottom: 0.2rem;   
-        }
+/* living background: the dot grid is painted once and only moved with a transform */
+.bg-field { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.bg-dots {
+  position: absolute; inset: -40px;
+  background-image: radial-gradient(circle, var(--dot) 1.3px, transparent 1.9px);
+  background-size: 30px 30px;
+  will-change: transform;
+}
+.bg-glow {
+  position: absolute; left: 0; top: 0; width: 380px; height: 380px;
+  background-image: radial-gradient(circle, var(--fg) 2.2px, transparent 2.8px);
+  background-size: 30px 30px;
+  -webkit-mask-image: radial-gradient(circle 190px at 50% 50%, #000 0%, transparent 100%);
+  mask-image: radial-gradient(circle 190px at 50% 50%, #000 0%, transparent 100%);
+  opacity: 0; transition: opacity 0.2s;
+  will-change: transform;
+}
 
-        body[data-theme="theme-1"]  { --bg-color: #593eff; --text-color: #ffcdd8; }
-        body[data-theme="theme-2"]  { --bg-color: #ffcdd9; --text-color: #fe3940; }
-        body[data-theme="theme-3"]  { --bg-color: #fe9a00; --text-color: #ffcdd9; }
-        body[data-theme="theme-4"]  { --bg-color: #ffcdd9; --text-color: #01752e; }
-        body[data-theme="theme-5"]  { --bg-color: #3b90ff; --text-color: #ffcdd8; }
-        body[data-theme="theme-6"]  { --bg-color: #ffcdd8; --text-color: #593eff; }
-        body[data-theme="theme-7"]  { --bg-color: #fe3940; --text-color: #ffcdd9; }
-        body[data-theme="theme-8"]  { --bg-color: #ffcdd9; --text-color: #fe9a00; }
-        body[data-theme="theme-9"]  { --bg-color: #01752e; --text-color: #ffcdd9; }
-        body[data-theme="theme-10"] { --bg-color: #ffcdd8; --text-color: #3b90ff; }
+/* floating shapes on parallax layers */
+.decos { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.deco {
+  position: absolute; left: var(--x); top: var(--y);
+  width: calc(1.6rem * var(--s, 1)); height: calc(1.6rem * var(--s, 1));
+  transform: translate3d(var(--px, 0px), var(--py, 0px), 0) rotate(var(--rot, 0deg));
+  will-change: transform;
+}
+.d-sq { background: var(--fg); border-radius: 22%; }
+.d-coin { background: var(--coin); border-radius: 22%; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--fg); }
+.d-ring { border: 3px solid var(--fg); border-radius: 50%; }
+.d-plus::before, .d-plus::after { content: ""; position: absolute; background: var(--fg); border-radius: 2px; }
+.d-plus::before { left: 0; right: 0; top: 50%; height: 3px; margin-top: -1.5px; }
+.d-plus::after { top: 0; bottom: 0; left: 50%; width: 3px; margin-left: -1.5px; }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden; 
-        }
+/* top bar */
+.bar {
+  position: fixed; inset: 0 0 auto 0; z-index: 10;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 0.6rem;
+  padding: 0.9rem var(--gutter);
+  pointer-events: none;
+}
+.bar > * { pointer-events: auto; }
+.pill {
+  display: flex; align-items: center; gap: 0.5rem 1.1rem; flex-wrap: wrap;
+  padding: 0.55rem 1.15rem; border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.brand { font-family: var(--f-name); font-size: 1.8rem; line-height: 1; white-space: nowrap; text-decoration: none; }
+.controls { display: flex; align-items: center; gap: 0.35rem; padding: 0.3rem; }
+.ctl {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  height: 2.4rem; min-width: 2.4rem; padding: 0 0.95rem;
+  border: 0; border-radius: 999px; background: transparent; cursor: pointer;
+  font-weight: 700; font-size: 0.95rem; white-space: nowrap;
+  transition: background-color 0.2s, color 0.2s;
+}
+.ctl.is-round { padding: 0; }
+.ctl:hover { background: var(--fg); color: var(--bg); }
+.ctl .icon { width: 1.15rem; height: 1.15rem; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            font-variant-emoji: text !important;
-        }
+/* content */
+main {
+  position: relative; z-index: 5;
+  height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 5.5rem var(--gutter) 3rem;
+  text-align: center;
+}
+.name {
+  font-family: var(--f-display); font-weight: 700; text-transform: uppercase;
+  font-size: min(30vw, 33vh);
+  line-height: 0.8; letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.name .row { display: block; padding-top: 0.06em; }
+.name .row + .row { position: relative; width: max-content; margin: 0 auto; }
+.name .row + .row::after {
+  content: ""; position: absolute; left: 100%; bottom: 0.08em;
+  width: 0.14em; height: 0.14em; margin-left: 0.1em;
+  background: var(--coin); border-radius: 0.02em;
+}
+.name .ch { display: inline-block; }
+.name.is-ua { font-family: var(--f-name); font-size: min(24vw, 28vh); line-height: 0.9; }
+.roles {
+  margin-top: clamp(1rem, 3vh, 2rem);
+  font-family: var(--f-mono); font-size: clamp(0.85rem, 1.4vw, 1.1rem); font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.bio {
+  margin-top: clamp(0.6rem, 2vh, 1.1rem);
+  max-width: 34rem;
+  font-family: var(--f-serif); font-style: italic;
+  font-size: clamp(1.2rem, 2.1vw, 1.7rem); line-height: 1.2;
+}
+.links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: clamp(1.2rem, 4vh, 2.4rem); }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem;
+  min-height: 3rem; padding: 0.7rem 1.35rem;
+  border-radius: 999px; border: 1.5px solid var(--fg);
+  font-weight: 700; font-size: 1rem; line-height: 1.1; text-decoration: none;
+  transition: transform 0.25s var(--ease-spring), background-color 0.2s, color 0.2s;
+}
+.btn:active { transform: scale(0.96); }
+.btn .icon { width: 1.15em; height: 1.15em; }
+.btn-solid { background: var(--fg); color: var(--bg); }
+.btn-ghost { background: transparent; }
+.btn:hover { background: var(--coin); border-color: var(--coin); color: #17131f; }
 
-        *, *::before, *::after {
-            cursor: none !important;
-        }
+/* language switch: every text exists in both languages, only one is shown */
+[data-lang="en"] [lang="uk"], [data-lang="ua"] [lang="en"] { display: none !important; }
 
-        body, main, section, div, p, h1, h2, h3, a, button, span, svg, .clipped-lens, .clipped-lens * {
-            transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                        color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                        border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
-        }
+/* entrance */
+.rise { opacity: 0; transform: translateY(14px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
+.ready .rise { opacity: 1; transform: none; }
+.ready .rise:nth-child(2) { transition-delay: 0.05s; }
+.ready .rise:nth-child(3) { transition-delay: 0.15s; }
+.ready .rise:nth-child(4) { transition-delay: 0.25s; }
+.swap { opacity: 0 !important; transform: translateY(8px) !important; transition-duration: 0.18s !important; transition-delay: 0s !important; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'JetBrains Mono', monospace;
-            position: relative;
-        }
+/* pointer */
+.has-cursor, .has-cursor * { cursor: none !important; }
+.cursor {
+  position: fixed; left: 0; top: 0; z-index: 1000;
+  width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: #fff; mix-blend-mode: difference; pointer-events: none; opacity: 0;
+  transition: width 0.25s var(--ease-out), height 0.25s var(--ease-out), margin 0.25s var(--ease-out), opacity 0.2s;
+}
+.cursor.is-on { opacity: 1; }
+.cursor.is-link { width: 46px; height: 46px; margin: -23px 0 0 -23px; }
 
-        .page-wrapper {
-            position: relative; 
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .lang-block {
-            transition: opacity 0.25s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: opacity;
-        }
-
-        body[data-lang="en"] .lang-ua,
-        body[data-lang="ua"] .lang-en {
-            display: none !important;
-            opacity: 0 !important;
-        }
-
-        body[data-lang="en"] .lang-en,
-        body[data-lang="ua"] .lang-ua {
-            display: block !important;
-        }
-
-        body[data-lang="en"] nav.links-container .lang-en,
-        body[data-lang="ua"] nav.links-container .lang-ua {
-            display: flex !important;
-            gap: var(--links-gap);
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .fade-out-all {
-            opacity: 0 !important;
-            transform: translateY(8px);
-            transition: opacity 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.2s cubic-bezier(0.25, 1, 0.5, 1) !important;
-        }
-
-        .title-name {
-            font-family: 'Aalto Display', sans-serif;
-            font-size: var(--title-font-size);
-            line-height: var(--title-line-height);
-            margin-bottom: var(--title-margin-bottom);
-            white-space: nowrap;
-        }
-
-        .title-name .char {
-            display: inline-block;
-            font-weight: 900;
-            text-transform: uppercase; 
-            letter-spacing: var(--title-letter-spacing);
-            opacity: 0;
-            will-change: opacity;
-        }
-
-        .title-name .thin-char {
-            font-weight: 300 !important;
-            font-feature-settings: "salt" on !important;
-            text-transform: lowercase !important;
-            letter-spacing: var(--title-thin-letter-spacing) !important;
-        }
-
-        .roles {
-            font-size: var(--roles-font-size);
-            letter-spacing: var(--roles-letter-spacing);
-            margin-bottom: var(--roles-margin-bottom);
-            font-weight: 700;
-            color: var(--text-color);
-        }
-
-        .short-bio {
-            font-size: var(--bio-font-size);
-            line-height: var(--bio-line-height);
-            max-width: var(--bio-max-width);
-            margin-bottom: var(--bio-margin-bottom);
-            color: var(--text-color);
-            opacity: 0.85; 
-        }
-
-        .links-container a {
-            font-size: var(--links-font-size);
-            border-bottom: var(--links-border-width) solid var(--text-color);
-            padding-bottom: var(--links-padding-bottom);
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 700;
-            transition: opacity 0.2s ease;
-        }
-
-        .links-container a:hover {
-            opacity: 0.6;
-        }
-
-        .arrow-svg {
-            width: 0.85em; 
-            height: 0.85em; 
-            transform: translate(0.08em, -0.05em); 
-            display: inline-block; 
-            vertical-align: middle;
-        }
-
-        .fade-in-content {
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 1s cubic-bezier(0.16, 1, 0.3, 1) !important;
-            will-change: opacity, transform;
-        }
-
-        .fade-in-content.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .controls-group {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            display: flex;
-            gap: 0.8rem;
-            align-items: center;
-            z-index: 99999;
-        }
-
-        .theme-toggle, .lang-toggle {
-            background: none;
-            border: 1px solid var(--text-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: inherit;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: background-color 0.25s cubic-bezier(0.25, 1, 0.5, 1), 
-                        color 0.25s cubic-bezier(0.25, 1, 0.5, 1), 
-                        opacity 0.2s ease;
-        }
-
-        .theme-toggle {
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            height: 2.2rem;
-        }
-
-        .lang-toggle {
-            width: 2.2rem;
-            height: 2.2rem;
-        }
-
-        .theme-toggle:hover, .lang-toggle:hover {
-            background-color: var(--text-color) !important;
-            color: var(--bg-color) !important;
-        }
-
-        .clipped-lens {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            user-select: none;
-            z-index: 99998;
-            background-color: var(--text-color);
-            overflow: hidden;
-            
-            --clip-top: 0px;
-            --clip-right: 0px;
-            --clip-bottom: 0px;
-            --clip-left: 0px;
-            --clip-radius: 50%;
-            
-            clip-path: inset(
-                var(--clip-top) 
-                var(--clip-right) 
-                var(--clip-bottom) 
-                var(--clip-left) 
-                round 
-                var(--clip-radius)
-            );
-            
-            opacity: 0;
-            transition: opacity 0.3s ease, background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: clip-path, opacity;
-        }
-
-        .clipped-lens .page-wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        body.cursor-active .clipped-lens {
-            opacity: 1;
-        }
-
-        .clipped-lens,
-        .clipped-lens * {
-            color: var(--bg-color) !important;
-            border-color: var(--bg-color) !important;
-            opacity: 1 !important; 
-        }
-
-        .clipped-lens .hovered {
-            background-color: var(--bg-color) !important;
-            border-color: transparent !important;
-        }
-        
-        .clipped-lens .hovered,
-        .clipped-lens .hovered * {
-            color: var(--text-color) !important;
-            border-color: var(--text-color) !important;
-            opacity: 1 !important;
-        }
-
-        .custom-cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 99999;
-            opacity: 0;
-            transition: opacity 0.2s ease; 
-            will-change: transform, width, height, border-radius;
-            background-color: transparent;
-        }
-
-        @media (pointer: coarse) {
-            *, *::before, *::after {
-                cursor: auto !important;
-            }
-            .custom-cursor, .clipped-lens { 
-                display: none !important; 
-            }
-        }
-    </style>
+@media (max-width: 640px) {
+  .brand { font-size: 1.4rem; }
+  .pill { padding: 0.4rem 0.8rem; border-radius: 18px; }
+  .ctl { padding: 0 0.7rem; font-size: 0.85rem; }
+  .name { font-size: min(34vw, 28vh); }
+  .name.is-ua { font-size: min(27vw, 24vh); }
+  .links .btn { min-height: 2.75rem; padding: 0.6rem 1.1rem; font-size: 0.95rem; }
+  .decos .deco:nth-child(n+5) { display: none; }
+}
+@media (max-width: 400px) {
+  .bar { gap: 0.4rem; padding-inline: 0.6rem; }
+  .brand { font-size: 1.2rem; }
+  .ctl { padding: 0 0.5rem; height: 2.1rem; min-width: 2.1rem; }
+  .controls { padding: 0.25rem; gap: 0.15rem; }
+}
+@media (max-height: 640px) {
+  main { padding-top: 5rem; padding-bottom: 1.5rem; }
+  .name { font-size: min(32vw, 25vh); }
+  .name.is-ua { font-size: min(26vw, 22vh); }
+  .bio { font-size: 1.15rem; }
+}
+/* very short screens (phones on their side): let the card scroll instead of overlapping */
+@media (max-height: 520px) {
+  body { height: auto; min-height: 100svh; overflow-y: auto; }
+  main { height: auto; min-height: 100svh; justify-content: flex-start; padding-top: 5rem; }
+  .name, .name.is-ua { font-size: min(18vw, 26vh); }
+  .decos .deco:nth-child(n+4) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .rise { opacity: 1; transform: none; }
+}
+</style>
 </head>
-<body data-theme="theme-1" data-lang="en">
+<body data-theme="1" data-lang="en">
+<div class="bg-field" aria-hidden="true"><i class="bg-dots"></i><i class="bg-glow"></i></div>
+<div class="decos" aria-hidden="true">
+  <i class="deco d-sq" style="--x:8%;--y:20%;--s:1.2;--rot:-10deg" data-depth="3"></i>
+  <i class="deco d-plus" style="--x:80%;--y:14%;--s:1;--rot:0deg" data-depth="2"></i>
+  <i class="deco d-ring" style="--x:90%;--y:62%;--s:1.4;--rot:0deg" data-depth="3.5"></i>
+  <i class="deco d-coin" style="--x:14%;--y:76%;--s:0.9;--rot:12deg" data-depth="2.5"></i>
+  <i class="deco d-plus" style="--x:46%;--y:88%;--s:0.8;--rot:0deg" data-depth="1.5"></i>
+  <i class="deco d-sq" style="--x:68%;--y:80%;--s:0.7;--rot:16deg" data-depth="1.2"></i>
+  <i class="deco d-ring" style="--x:30%;--y:10%;--s:0.8;--rot:0deg" data-depth="1.8"></i>
+</div>
 
-    <div class="custom-cursor" id="customCursor"></div>
+<header class="bar">
+  <a class="pill brand" href="#" aria-label="Yehor Khadyko">Yehor Khadyko</a>
+  <div class="pill controls">
+    <button class="ctl is-round" type="button" data-lang-btn aria-label="Switch language to Ukrainian">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 15.3 0 0 1 4 10 14.5 15.3 0 0 1-4 10 14.5 15.3 0 0 1-4-10 14.5 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+    </button>
+    <button class="ctl" type="button" data-style-btn><span lang="en">Change Style</span><span lang="uk">Змінити стиль</span></button>
+  </div>
+</header>
 
-    <div class="page-wrapper" id="mainContainer">
-        <div class="container">
-            
-            <div class="controls-group">
-                <button class="lang-toggle fade-in-content" onclick="toggleLanguage()">
-                    <svg class="planet-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" style="width: 1.15rem; height: 1.15rem; display: block;">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M12 2a14.5 15.3 0 0 1 4 10 14.5 15.3 0 0 1-4 10 14.5 15.3 0 0 1-4-10 14.5 15.3 0 0 1 4-10z"></path>
-                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                    </svg>
-                </button>
-                <button class="theme-toggle fade-in-content" id="themeBtn" onclick="nextTheme()">
-                    <span class="lang-block lang-en">Change Style</span>
-                    <span class="lang-block lang-ua">Змінити стиль</span>
-                </button>
-            </div>
+<main id="main">
+  <h1 class="name" data-name aria-label="Yehor Khadyko"></h1>
+  <p class="roles rise"><span lang="en">/ game designer / atmosphere builder / researcher</span><span lang="uk">/ геймдизайнер / конструктор атмосфери / дослідник</span></p>
+  <p class="bio rise"><span lang="en">Welcome to my personal void. A place where pure aesthetics intersect with systemic thinking. Designing experiences, managing attention, creating worlds.</span><span lang="uk">Ласкаво просимо в мій особистий void. Місце, де чиста естетика перетинається з системним мисленням. Проектую досвід, керую увагою, створюю світи.</span></p>
+  <nav class="links rise" aria-label="Links">
+    <a class="btn btn-solid" href="https://yehor-khadyko.github.io/portfolio/" target="_blank" rel="noopener"><span lang="en">Portfolio</span><span lang="uk">Портфоліо</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="vh"> (opens in a new tab)</span></a>
+    <a class="btn btn-ghost" href="https://www.linkedin.com/in/yehor-khadyko/" target="_blank" rel="noopener">LinkedIn<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="vh"> (opens in a new tab)</span></a>
+    <a class="btn btn-ghost" href="https://yehor-khadyko.itch.io" target="_blank" rel="noopener">Itch.io<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="vh"> (opens in a new tab)</span></a>
+    <a class="btn btn-ghost" href="mailto:yehor.khadyko@gmail.com"><span lang="en">Contact</span><span lang="uk">Контакт</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9.5 8H16v6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </nav>
+</main>
 
-            <h1 class="title-name">
-                <span class="lang-block lang-en">
-                    <span class="char">Y</span><span class="char">E</span><span class="char">H</span><span class="char thin-char">O</span><span class="char">R</span><br>
-                    <span class="char">K</span><span class="char">H</span><span class="char thin-char">A</span><span class="char">D</span><span class="char">Y</span><span class="char">K</span><span class="char">O</span>
-                </span>
-                <span class="lang-block lang-ua">
-                    <span class="char">Ε</span><span class="char">Γ</span><span class="char thin-char">O</span><span class="char">Ρ</span><br>
-                    <span class="char">Χ</span><span class="char thin-char">A</span><span class="char">Δ</span><span class="char">Υ</span><span class="char">Κ</span><span class="char">Ο</span>
-                </span>
-            </h1>
+<script>
+(() => {
+  "use strict";
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const ease = (a, f) => 1 - Math.pow(1 - a, f);
+  const body = document.body;
+  const motionOK = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-            <div class="roles fade-in-content">
-                <p class="lang-block lang-en">/ game designer / atmosphere builder / researcher</p>
-                <p class="lang-block lang-ua">/ геймдизайнер / конструктор атмосфери / дослідник</p>
-            </div>
+  /* ---------- name, with the terminal decrypt effect of the original card ---------- */
+  const NAMES = {
+    en: [["Y", "E", "H", "O", "R"], ["K", "H", "A", "D", "Y", "K", "O"]],
+    ua: [["Ε", "Γ", "O", "Ρ"], ["Χ", "A", "Δ", "Υ", "Κ", "Ο"]],
+  };
+  const GLYPHS = "YEHORKHADYKOABCDFGIJLMNPQSTUVWXZ";
+  const nameEl = $("[data-name]");
+  let timers = [];
+  const decrypt = (lang) => {
+    timers.forEach(clearTimeout); timers = [];
+    nameEl.classList.toggle("is-ua", lang === "ua");
+    nameEl.textContent = "";
+    let i = 0;
+    NAMES[lang].forEach((row) => {
+      const r = document.createElement("span");
+      r.className = "row"; r.setAttribute("aria-hidden", "true");
+      row.forEach((target) => {
+        const s = document.createElement("span");
+        s.className = "ch"; s.textContent = target;
+        r.append(s);
+        if (!motionOK) return;
+        s.style.opacity = "0";
+        timers.push(setTimeout(() => {
+          let n = 0;
+          const tick = () => {
+            if (n < 10) {
+              s.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+              s.style.opacity = (0.3 + 0.07 * n).toFixed(2);
+              n++; timers.push(setTimeout(tick, 35));
+            } else { s.textContent = target; s.style.opacity = "1"; }
+          };
+          tick();
+        }, i * 80));
+        i++;
+      });
+      nameEl.append(r);
+    });
+  };
 
-            <div class="short-bio fade-in-content">
-                <p class="lang-block lang-en">Welcome to my personal void. A place where pure aesthetics intersect with systemic thinking. Designing experiences, managing attention, creating worlds.</p>
-                <p class="lang-block lang-ua">Ласкаво просимо в мій особистий void. Місце, де чиста естетика перетинається з системним мисленням. Проектую досвід, керую увагою, створюю світи.</p>
-            </div>
+  /* ---------- language and style ---------- */
+  const langBtn = $("[data-lang-btn]");
+  const rises = $$(".rise");
+  let lang = "en", busy = false;
+  const setLang = (next) => {
+    lang = next;
+    body.dataset.lang = next;
+    document.documentElement.lang = next === "ua" ? "uk" : "en";
+    langBtn.setAttribute("aria-label", next === "ua" ? "Switch language to English" : "Switch language to Ukrainian");
+  };
+  langBtn.addEventListener("click", () => {
+    if (busy) return;
+    busy = true;
+    const targets = [nameEl, ...rises];
+    targets.forEach((t) => t.classList.add("swap"));
+    setTimeout(() => {
+      setLang(lang === "en" ? "ua" : "en");
+      decrypt(lang);
+      setTimeout(() => { targets.forEach((t) => t.classList.remove("swap")); busy = false; }, 50);
+    }, 200);
+  });
+  let theme = 1;
+  $("[data-style-btn]").addEventListener("click", () => {
+    theme = theme % 10 + 1;
+    body.dataset.theme = String(theme);
+    $('meta[name="theme-color"]').setAttribute("content", getComputedStyle(body).getPropertyValue("--bg").trim());
+  });
 
-            <nav class="links-container fade-in-content" id="linksContainer">
-                <div class="lang-block lang-en">
-                    <a href="https://yehor-khadyko.github.io/portfolio/" target="_blank" class="nav-link">Portfolio <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="https://www.linkedin.com/in/yehor-khadyko/" target="_blank" class="nav-link">LinkedIn <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="https://yehor-khadyko.itch.io" target="_blank" class="nav-link">Itch.io <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="mailto:yehor.khadyko@gmail.com" target="_blank" class="nav-link">Contact <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                </div>
-                <div class="lang-block lang-ua">
-                    <a href="https://yehor-khadyko.github.io/portfolio/" target="_blank" class="nav-link">Портфоліо <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="https://www.linkedin.com/in/yehor-khadyko/" target="_blank" class="nav-link">LinkedIn <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="https://yehor-khadyko.itch.io" target="_blank" class="nav-link">Itch.io <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                    <a href="mailto:yehor.khadyko@gmail.com" target="_blank" class="nav-link">Контакт <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"><line x1="7" y1="17" x2="15.8" y2="8.2"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
-                </div>
-            </nav>
-            
-        </div>
-    </div>
+  /* ---------- depth: pointer parallax, the glowing dots and the shapes ---------- */
+  const dots = $(".bg-dots"), glow = $(".bg-glow");
+  const decos = $$(".deco");
+  const TILE = 30, GLOW = 380;
+  const mod = (v) => ((v % TILE) + TILE) % TILE;
+  let tx = 0, ty = 0, px = 0, py = 0, rawX = -400, rawY = -400;
+  let lastPx = NaN, lastPy = NaN, lastRX = NaN, lastRY = NaN, glowOn = null;
+  if (fine) {
+    addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse") return;
+      tx = e.clientX / innerWidth - 0.5; ty = e.clientY / innerHeight - 0.5;
+      rawX = e.clientX; rawY = e.clientY;
+    }, { passive: true });
+    document.addEventListener("pointerleave", () => { rawX = rawY = -400; });
+  }
+  // phones: the shapes follow the tilt-free idle drift only, so nothing needs sensors
+  const jobs = [];
+  if (motionOK) {
+    jobs.push((f, now) => {
+      const a = ease(0.1, f);
+      px = lerp(px, tx, a); py = lerp(py, ty, a);
+      if (Math.abs(tx - px) < 0.0005 && Math.abs(ty - py) < 0.0005) { px = tx; py = ty; }
+      const idle = fine ? 0 : 1;
+      const t = now / 1000;
+      if (!idle && px === lastPx && py === lastPy && rawX === lastRX && rawY === lastRY) return;
+      lastPx = px; lastPy = py; lastRX = rawX; lastRY = rawY;
+      const bx = mod(-px * 50 + (idle ? Math.sin(t * 0.3) * 14 : 0)), by = mod(-py * 40 + (idle ? t * 3 : 0));
+      dots.style.transform = `translate3d(${bx.toFixed(1)}px, ${by.toFixed(1)}px, 0)`;
+      const on = rawX > -100;
+      if (on !== glowOn) { glowOn = on; glow.style.opacity = on ? "1" : "0"; }
+      if (on) {
+        const gx = rawX - GLOW / 2, gy = rawY - GLOW / 2;
+        glow.style.transform = `translate3d(${gx}px, ${gy}px, 0)`;
+        glow.style.backgroundPosition = `${(-40 + bx - gx).toFixed(1)}px ${(-40 + by - gy).toFixed(1)}px`;
+      }
+      decos.forEach((d, i) => {
+        const depth = Number(d.dataset.depth || 1);
+        const dx = -px * 38 * depth + (idle ? Math.sin(t * 0.5 + i) * 8 * depth : 0);
+        const dy = -py * 30 * depth + (idle ? Math.cos(t * 0.4 + i * 1.7) * 8 * depth : 0);
+        d.style.setProperty("--px", dx.toFixed(1) + "px");
+        d.style.setProperty("--py", dy.toFixed(1) + "px");
+      });
+    });
+  }
 
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  /* ---------- pointer ---------- */
+  if (fine && motionOK) {
+    const cur = document.createElement("div");
+    cur.className = "cursor"; cur.setAttribute("aria-hidden", "true");
+    document.body.append(cur);
+    document.documentElement.classList.add("has-cursor");
+    let mx = -100, my = -100, cx = -100, cy = -100, lcx = NaN, lcy = NaN;
+    addEventListener("pointermove", (e) => {
+      if (e.pointerType !== "mouse") return;
+      mx = e.clientX; my = e.clientY;
+      cur.classList.add("is-on");
+      cur.classList.toggle("is-link", !!(e.target.closest && e.target.closest("a, button")));
+    }, { passive: true });
+    document.addEventListener("pointerleave", () => cur.classList.remove("is-on"));
+    jobs.push((f) => {
+      const a = ease(0.6, f);
+      cx = lerp(cx, mx, a); cy = lerp(cy, my, a);
+      if (Math.abs(mx - cx) < 0.05 && Math.abs(my - cy) < 0.05) { cx = mx; cy = my; }
+      if (cx !== lcx || cy !== lcy) { lcx = cx; lcy = cy; cur.style.transform = `translate3d(${cx}px, ${cy}px, 0)`; }
+    });
+  }
 
-    <script>
-        const lenis = new Lenis({
-            duration: 1.4,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-            orientation: 'vertical',
-            smoothWheel: true,
-        });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
+  let last = performance.now();
+  const loop = (now) => {
+    const f = clamp((now - last) / 16.67, 0.5, 3);
+    last = now;
+    for (const j of jobs) j(f, now);
+    requestAnimationFrame(loop);
+  };
+  if (jobs.length) requestAnimationFrame(loop);
 
-        const translations = {
-            en: {
-                nameChars: [
-                    { char: 'Y' }, { char: 'E' }, { char: 'H' }, { char: 'O' }, { char: 'R' },
-                    { char: 'K' }, { char: 'H' }, { char: 'A' }, { char: 'D' }, { char: 'Y' }, { char: 'K' }, { char: 'O' }
-                ]
-            },
-            ua: {
-                nameChars: [
-                    { char: 'Ε' }, { char: 'Γ' }, { char: 'O' }, { char: 'Ρ' },
-                    { char: 'Χ' }, { char: 'A' }, { char: 'Δ' }, { char: 'Υ' }, { char: 'Κ' }, { char: 'Ο' }
-                ]
-            }
-        };
-
-        const mainContainer = document.getElementById('mainContainer');
-        const pageWrapper = document.querySelector('.page-wrapper');
-        
-        const lensWrapper = document.createElement('div');
-        lensWrapper.className = 'clipped-lens';
-        const clonedWrapper = pageWrapper.cloneNode(true); 
-        
-        clonedWrapper.removeAttribute('id');
-        clonedWrapper.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-        lensWrapper.appendChild(clonedWrapper);
-        pageWrapper.appendChild(lensWrapper); 
-
-        const body = document.body;
-        const themes = [
-            "theme-1", "theme-2", "theme-3", "theme-4", "theme-5", 
-            "theme-6", "theme-7", "theme-8", "theme-9", "theme-10"
-        ];
-        let currentThemeIndex = 0;
-        let resizeTimeout;
-
-        function nextTheme() {
-            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-            const newTheme = themes[currentThemeIndex];
-            body.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => lenis.resize(), 100);
-        }
-
-        let currentLang = 'en';
-        let decryptTimeouts = []; 
-        let isLangTransitioning = false;
-        const glyphs = "YEHORKHADYKOABCDFGIJLMNPQSTUVWXZ"; 
-
-        function startTerminalDecryptForLang(lang) {
-            let completedCount = 0;
-            const nameBlocks = document.querySelectorAll(`.title-name .lang-${lang}`);
-            if (nameBlocks.length === 0) return;
-
-            const realSpans = Array.from(nameBlocks[0].querySelectorAll('.char'));
-            const clonedSpans = nameBlocks[1] ? Array.from(nameBlocks[1].querySelectorAll('.char')) : [];
-            const data = translations[lang].nameChars;
-
-            realSpans.forEach((rSpan, index) => {
-                const cSpan = clonedSpans[index];
-                if (!rSpan) return;
-
-                const tId = setTimeout(() => {
-                    rSpan.style.opacity = '0.3';
-                    if (cSpan) cSpan.style.opacity = '0.3';
-
-                    let cycles = 10;
-                    let currentCycle = 0;
-                    const target = data[index].char;
-
-                    function tick() {
-                        if (currentCycle < cycles) {
-                            const randomChar = glyphs[Math.floor(Math.random() * glyphs.length)];
-                            rSpan.textContent = randomChar;
-                            if (cSpan) cSpan.textContent = randomChar;
-                            
-                            const progress = currentCycle / cycles;
-                            rSpan.style.opacity = 0.3 + (progress * 0.7);
-                            if (cSpan) cSpan.style.opacity = 0.3 + (progress * 0.7);
-
-                            currentCycle++;
-                            const subId = setTimeout(tick, 35);
-                            decryptTimeouts.push(subId);
-                        } else {
-                            rSpan.textContent = target;
-                            rSpan.style.opacity = '1';
-                            if (cSpan) {
-                                cSpan.textContent = target;
-                                cSpan.style.opacity = '1';
-                            }
-
-                            completedCount++;
-                            if (completedCount === data.length) {
-                                revealRestOfPage();
-                            }
-                        }
-                    }
-                    tick();
-                }, index * 80);
-
-                decryptTimeouts.push(tId);
-            });
-        }
-
-        function revealRestOfPage() {
-            const elements = document.querySelectorAll('.fade-in-content');
-            elements.forEach((el) => {
-                el.classList.add('visible');
-            });
-        }
-
-        function toggleLanguage() {
-            if (isLangTransitioning) return;
-            isLangTransitioning = true;
-
-            const targets = document.querySelectorAll('#themeBtn, .title-name, .roles, .short-bio, .links-container');
-            
-            targets.forEach(el => el.classList.add('fade-out-all'));
-
-            setTimeout(() => {
-                currentLang = currentLang === 'en' ? 'ua' : 'en';
-                body.setAttribute('data-lang', currentLang);
-
-                decryptTimeouts.forEach(clearTimeout);
-                decryptTimeouts = [];
-
-                const activeNameBlocks = document.querySelectorAll(`.title-name .lang-${currentLang}`);
-                activeNameBlocks.forEach(block => {
-                    const spans = block.querySelectorAll('.char');
-                    spans.forEach(span => span.style.opacity = '0');
-                });
-
-                updateInteractiveTriggers();
-
-                setTimeout(() => {
-                    targets.forEach(el => el.classList.remove('fade-out-all'));
-                    startTerminalDecryptForLang(currentLang);
-                    isLangTransitioning = false;
-                }, 50);
-
-            }, 200);
-        }
-
-        window.onload = () => {
-            updateInteractiveTriggers();
-            setTimeout(() => {
-                revealRestOfPage();
-                startTerminalDecryptForLang('en');
-            }, 400);
-        };
-
-        const cursorNode = document.getElementById('customCursor');
-        const PORTFOLIO_REST_RADIUS = 10;
-        const LERP_SPEED = 0.15;
-
-        let mouseX = 0, mouseY = 0;   
-        
-        let cursorX = 0, cursorY = 0;
-        let cursorW = 0, cursorH = 0;
-        let cursorR = 0;
-
-        let targetX = 0, targetY = 0;
-        let targetW = 0, targetH = 0;
-        let targetR = 0;
-
-        let isClicking = false;
-        let isOutside = true;    
-        let hoveredElement = null;
-        let hoveredRect = null; 
-
-        window.addEventListener('mousemove', (e) => {
-            if (e.clientX === 0 && e.clientY === 0) return;
-            
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-
-            if (isOutside) {
-                cursorX = mouseX;
-                cursorY = mouseY;
-                cursorW = 0;
-                cursorH = 0;
-                cursorR = 0;
-                
-                isOutside = false;
-                body.classList.add('cursor-active');
-            }
-        }, { passive: true });
-
-        document.addEventListener('mouseleave', () => {
-            isOutside = true;
-            hoveredElement = null;
-            hoveredRect = null;
-        });
-
-        window.addEventListener('mousedown', (e) => {
-            if (e.button === 0 && !isOutside) { 
-                isClicking = true;
-            }
-        });
-        window.addEventListener('mouseup', () => {
-            isClicking = false;
-        });
-
-        function syncCursorCoordinates() {
-            if (!hoveredElement) {
-                targetW = PORTFOLIO_REST_RADIUS * 2;
-                targetH = PORTFOLIO_REST_RADIUS * 2;
-                targetX = mouseX - targetW / 2;
-                targetY = mouseY - targetH / 2;
-                targetR = PORTFOLIO_REST_RADIUS; 
-            } else if (hoveredRect) {
-                const padding = 6; 
-                targetW = hoveredRect.width + padding * 2;
-                targetH = hoveredRect.height + padding * 2;
-                targetX = hoveredRect.left - padding;
-                targetY = hoveredRect.top - padding;
-                targetR = 0;
-            }
-
-            let activeTargetW = isClicking ? targetW * 0.82 : targetW;
-            let activeTargetH = isClicking ? targetH * 0.82 : targetH;
-            let activeTargetX = isClicking ? targetX + (targetW - activeTargetW) / 2 : targetX;
-            let activeTargetY = isClicking ? targetY + (targetH - activeTargetH) / 2 : targetY;
-
-            if (isOutside) {
-                activeTargetW = 0;
-                activeTargetH = 0;
-            }
-
-            cursorX += (activeTargetX - cursorX) * LERP_SPEED;
-            cursorY += (activeTargetY - cursorY) * LERP_SPEED;
-            cursorW += (activeTargetW - cursorW) * LERP_SPEED;
-            cursorH += (activeTargetH - cursorH) * LERP_SPEED;
-            cursorR += (targetR - cursorR) * LERP_SPEED;
-
-            if (isOutside && cursorW < 0.1) {
-                body.classList.remove('cursor-active');
-            }
-            
-            const viewportHeight = window.innerHeight;
-            const viewportWidth = window.innerWidth;
-
-            const clipTop = cursorY;
-            const clipLeft = cursorX;
-            const clipBottom = viewportHeight - (clipTop + cursorH);
-            const clipRight = viewportWidth - (clipLeft + cursorW);
-
-            lensWrapper.style.setProperty('--clip-top', `${clipTop}px`);
-            lensWrapper.style.setProperty('--clip-right', `${clipRight}px`);
-            lensWrapper.style.setProperty('--clip-bottom', `${clipBottom}px`);
-            lensWrapper.style.setProperty('--clip-left', `${clipLeft}px`);
-            lensWrapper.style.setProperty('--clip-radius', `${cursorR}px`);
-            
-            cursorNode.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
-            cursorNode.style.width = `${cursorW}px`;
-            cursorNode.style.height = `${cursorH}px`;
-            cursorNode.style.borderRadius = `${cursorR}px`;
-            cursorNode.style.opacity = isOutside ? '0' : '1';
-            
-            requestAnimationFrame(syncCursorCoordinates);
-        }
-        requestAnimationFrame(syncCursorCoordinates);
-
-        function updateInteractiveTriggers() {
-            const selector = 'a, button, .theme-toggle, .lang-toggle';
-            
-            const realElements = Array.from(mainContainer.querySelectorAll(selector));
-            const clonedElements = Array.from(lensWrapper.querySelectorAll(selector));
-
-            realElements.forEach((element, index) => {
-                if (!element.dataset.cursorBound) {
-                    element.dataset.cursorBound = "true";
-                    
-                    const clone = clonedElements[index];
-
-                    element.addEventListener('mouseenter', () => {
-                        hoveredElement = element; 
-                        hoveredRect = element.getBoundingClientRect(); 
-                        if (clone) clone.classList.add('hovered');
-                    });
-                    
-                    element.addEventListener('mouseleave', () => {
-                        hoveredElement = null;
-                        hoveredRect = null;
-                        if (clone) clone.classList.remove('hovered');
-                    });
-                }
-            });
-        }
-    </script>
+  /* ---------- start ---------- */
+  const start = () => {
+    decrypt("en");
+    setTimeout(() => document.body.classList.add("ready"), 350);
+  };
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start);
+})();
+</script>
 </body>
 </html>
